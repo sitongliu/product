@@ -31,6 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link href="assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" />
 		<link href="assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet" />
 		<link href="assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" />
+		<link href="assets/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 		
 		<!-- Theme CSS -->
 		<link href="assets/css/jquery.mmenu.css" rel="stylesheet" />
@@ -47,44 +48,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
           <body>
-                          <div class="col-md-12" style="margin-top:50px;">
+                          <div class="col-md-12" style="margin-top:10px;">
 							<div class="panel">
 								<div class="panel-heading bk-bg-primary" style="height:36px;">
 									<h6><i class="fa fa-indent red"></i>卖出商品录入</h6>							
 								</div>
 								<div class="panel-body">
-									<form action="" method="post" enctype="multipart/form-data" class="form-horizontal ">
+									<form action="" method="post"  class="form-horizontal ">
 									
 										<div class="form-group">
-											<label class="col-md-2 control-label" for="text-input">商品名称</label>
+											<label class="col-md-2 control-label" for="good_name">商品名称</label>
 											<div class="col-md-9">
-												<input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text">
+												<input type="text" id="good_name" name="good_name" class="form-control" placeholder="请输入商品名称">
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-2 control-label" for="text-input">卖出商品单价</label>
+											<label class="col-md-2 control-label" for="good_producter">生产厂商</label>
 											<div class="col-md-9">
-												<input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text">
+												<input type="text" id="good_producter" name="good_producter" class="form-control" placeholder="请输入商品生产厂商">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label" for="sale_price">卖出商品单价</label>
+											<div class="col-md-9">
+												<input type="text" id="sale_price" name="sale_price" class="form-control" placeholder="请输入商品卖出单价">
 											</div>
 										</div>
 										
 										<div class="form-group">
-											<label class="col-md-2 control-label" for="text-input">卖出时间</label>
-											<div class="col-md-9">
-												<input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text">
+											<label class="col-md-2 control-label" for="sale_time">卖出时间</label>
+										    <input type="hidden" id="dtp_input2" value="" />
+											<div class="col-md-9 controls input-append date form_date">
+												<input type="text" id="datetimepicker" name="sale_time"  class="form-control" placeholder="请选择商品的卖出时间">
+						                        <span class="add-on"><i class="icon-remove"></i></span>
+											    <span class="add-on"><i class="icon-th"></i></span>
 											</div>
+											
+											
 										</div>
 										<div class="form-group">
-											<label class="col-md-2 control-label" for="text-input">卖出数量</label>
+											<label class="col-md-2 control-label" for="sale_num">卖出数量</label>
 											<div class="col-md-9">
-												<input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text">
+												<input type="text" id="sale_num" name="sale_num" class="form-control" placeholder="请输入商品本次卖出的数量">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label" for="select">商品类型</label>
 											<div class="col-md-9">
 												<select id="select" name="select" class="form-control" size="1">
-													<option value="0">请选择</option>
+													<option value="0">请选择商品类型</option>
 													<option value="1">服 装</option>
 													<option value="2">食 品</option>
 													<option value="3">药 品</option>
@@ -92,9 +104,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-2 control-label" for="textarea-input">商品描述</label>
+											<label class="col-md-2 control-label" for="sale_bz">商品卖出备注</label>
 											<div class="col-md-9">
-												<textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" placeholder="Content.."></textarea>
+												<textarea id="sale_bz" name="sale_bz" rows="9" class="form-control" placeholder="Content.."></textarea>
 											</div>
 										</div>
 										
@@ -129,6 +141,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
 		<script src="assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
 		<script src="assets/plugins/maskedinput/js/jquery.maskedinput.js"></script>
+		<script type="text/javascript" src="assets/other/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="assets/other/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 
 		<!-- Theme JS -->		
 		<script src="assets/js/jquery.mmenu.min.js"></script>
@@ -138,5 +152,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="assets/js/pages/form-elements.js"></script>
 		
 		<!-- end: JavaScript-->
+		
+		<script type="text/javascript"> 
+       $('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+        </script> 
   
 </html>

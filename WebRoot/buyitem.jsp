@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
           <body>
-                          <div class="col-md-12" style="margin-top:50px;">
+                          <div class="col-md-12" style="margin-top:10px;">
 							<div class="panel">
 								<div class="panel-heading bk-bg-primary" style="height:36px;">
 									<h6><i class="fa fa-indent red"></i>进货商品录入</h6>							
