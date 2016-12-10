@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<h6><i class="fa fa-indent red"></i>卖出商品录入</h6>							
 								</div>
 								<div class="panel-body">
-									<form action="" method="post"  class="form-horizontal ">
+									<form action="SaleItemServ" method="post"  class="form-horizontal ">
 									
 										<div class="form-group">
 											<label class="col-md-2 control-label" for="good_name">商品名称</label>
