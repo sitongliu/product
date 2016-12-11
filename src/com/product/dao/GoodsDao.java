@@ -83,24 +83,29 @@ public class GoodsDao {
 		return 0;
 	}
 	
-	 public void findgoods(GoodsVO goods){
+	 public boolean  findgoods(GoodsVO goods){
 	        Connection conn = null;
 	        PreparedStatement st = null;
 	        ResultSet rs = null;
 	        try{
 	            conn = JDBCUtils.getConnection();
-	            String sql = "select * from goods where id=?";
+	            String sql = "select * from goods where good_name ='?'";
 	            st = conn.prepareStatement(sql);
-	            st.setInt(1, goods.getGood_id());
+	            st.setString(1, goods.getGood_name());
 	            rs = st.executeQuery();
 	            if(rs.next()){
 	                System.out.println(rs.getString("name"));
 	            }
+	            return true;
 	        }catch (Exception e) {
+	        	e.printStackTrace();
+	        	System.out.println("≤È’“ ß∞‹");
 	            
 	        }finally{
-	            JDBCUtils.release(conn, st, rs);
+	            JDBCUtils.release(conn, st, rs);  
 	        }
+	        
+	        return true;
 	    }
 	
 	

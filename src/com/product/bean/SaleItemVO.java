@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class SaleItemVO {
 	
-	private int  sale_id  , sale_price,sale_num;
-	private Date ale_time;  
+	private int  sale_id , sale_price,sale_num;
+	private Date sale_time;  
 	public int getSale_id() {
 		return sale_id;
 	}
@@ -24,11 +24,12 @@ public class SaleItemVO {
 	public void setSale_num(int sale_num) {
 		this.sale_num = sale_num;
 	}
-	public Date getAle_time() {
-		return ale_time;
+
+	public Date getSale_time() {
+		return sale_time;
 	}
-	public void setAle_time(Date ale_time) {
-		this.ale_time = ale_time;
+	public void setSale_time(Date sale_time) {
+		this.sale_time = sale_time;
 	}
 	public String getSale_bz() {
 		return sale_bz;
