@@ -26,8 +26,6 @@ private static BuyItemDao instance = null;
 		
 		
 		GoodsDao.getInstance().savegoods(goods);
-		
-		
 		GoodsDao goodss = new GoodsDao();
 		int a = goodss.savegoods(goods);
 		

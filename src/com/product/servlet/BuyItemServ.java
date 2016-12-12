@@ -45,6 +45,8 @@ public class BuyItemServ extends HttpServlet {
 		buyitem.setBuy_time(new java.sql.Date(now.getTime()));
 		boolean res2 = BuyItemDao.getInstance().savebuyitem(buyitem,goods);
 		
+		//录入信息成功之后跳转到买入商品信息页面
+		request.getRequestDispatcher("buygoodslist.jsp").forward(request,response);
 		System.out.println(res2);
 	        
 	    }
