@@ -40,13 +40,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</tr>
 											</thead>   
 											<tbody>
-											<c:forEach var="list" items="${GoodsList}"> 
+											<c:forEach var="goods" items="${page.list}"> 
 												<tr>
-													<td>${list.goods_name }</td>
-													<td>${list.goods_producter }</td>
-													<td>${list.goods_type}</td>
-													<td>12</td>    
-													<td>12</td>                                   
+													<td>${goods.good_name }</td>
+													<td>${goods.good_producter }</td>
+													<td><c:if test="${goods.good_type==1 }">食品</c:if>
+													 <c:if test="${goods.good_type==2 }">药品</c:if>
+													 <c:if test="${goods.good_type==3 }">服装</c:if>
+													</td>
+													<td>${goods.vo.good_num }</td>    
+													<td>${goods.vo.buy_price }</td>                                   
 												</tr>
 										</c:forEach>
 									</tbody>
@@ -55,15 +58,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						   </div>
 					  </div>
 				  </div>
-	          </div>			   
-	           <c:if test="${currentpageno>=1}">
-                    <a href="PageServ?currentpageno=1">首页</a>
-                    <a href="PageServ?currentpageno=${currentpageno-1}">上一页</a>
+	          </div>	
+	           <a href="PageServ?pageNo=1">首页</a>		   
+	           <c:if test="${page.pageNo>1}">
+                    <a href="PageServ?pageNo=${page.pageNo-1}">上一页</a>
                </c:if>
-               <c:if test="${currentpageno==1}">
-                    <a href="PageServ?currentpageno=${currentpageno+1}">下一页</a>
-                    <a href="PageServ?currentpageno=${PageCount}">尾页</a>
+               <c:if test="${page.pageNo<page.pageCount}">
+                    <a href="PageServ?pageNo=${page.pageNo+1}">下一页</a>
                </c:if>
+               <a href="PageServ?pageNo=${page.pageCount}">尾页</a>
+                总页数${page.pageCount}
 							
   </body>
         <script src="assets/vendor/js/jquery.min.js"></script>

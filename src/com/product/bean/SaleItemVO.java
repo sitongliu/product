@@ -5,12 +5,20 @@ import java.sql.Date;
 public class SaleItemVO {
 	
 	private int  sale_id , sale_price,sale_num;
+	private int good_id;
 	private Date sale_time;  
 	public int getSale_id() {
 		return sale_id;
 	}
 	public void setSale_id(int sale_id) {
 		this.sale_id = sale_id;
+	}
+	
+	public int getGood_id() {
+		return good_id;
+	}
+	public void setGood_id(int good_id) {
+		this.good_id = good_id;
 	}
 	public int getSale_price() {
 		return sale_price;

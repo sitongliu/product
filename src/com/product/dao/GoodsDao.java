@@ -29,12 +29,13 @@ public class GoodsDao {
 	     int autoIncKey = -1;
 	     try{
 	            conn = JDBCUtils.getConnection();
-	            String sql = "insert into goods(good_name,good_producter,description) values(?,?,?)"; 
+	            String sql = "insert into goods(good_name,good_producter,description,good_type) values(?,?,?,?)"; 
 	            pstm = conn.prepareStatement(sql,new String[]{"goods_id"}); 
 	            pstm.setString(1,goods.getGood_name());
 	            pstm.setString(2, goods.getGood_producter());
 	            pstm.setString(3, goods.getDescription());
-	            pstm.executeUpdate();
+	            pstm.setInt(4,goods.getGood_type());
+	            pstm.execute();
 	            rs = pstm.getGeneratedKeys();
 	            if(rs.next()){
 		            autoIncKey = rs.getInt(1); }
@@ -83,20 +84,29 @@ public class GoodsDao {
 		return 0;
 	}
 	
-	 public boolean  findgoods(GoodsVO goods){
+	
+	//查找商品信息
+	 public GoodsVO  findgoods(String good_name,String good_producter,int good_type){
 	        Connection conn = null;
 	        PreparedStatement st = null;
 	        ResultSet rs = null;
+	        GoodsVO vo=null;
 	        try{
 	            conn = JDBCUtils.getConnection();
-	            String sql = "select * from goods where good_name ='?'";
+	            String sql = "select * from goods where good_name =? and good_producter=? and good_type=?";
 	            st = conn.prepareStatement(sql);
-	            st.setString(1, goods.getGood_name());
+	            st.setString(1,good_name);
+	            st.setString(2, good_producter);
+	            st.setInt(3, good_type);
 	            rs = st.executeQuery();
 	            if(rs.next()){
-	                System.out.println(rs.getString("name"));
+	            	vo=new GoodsVO();
+	            	vo.setGood_id(rs.getInt("good_id"));
+	            	vo.setGood_name(rs.getString("good_name"));
+	            	vo.setGood_producter(rs.getString("good_producter"));
+	            	vo.setGood_type(rs.getInt("good_type"));
+	            	vo.setDescription(rs.getString("description"));
 	            }
-	            return true;
 	        }catch (Exception e) {
 	        	e.printStackTrace();
 	        	System.out.println("查找失败");
@@ -105,7 +115,7 @@ public class GoodsDao {
 	            JDBCUtils.release(conn, st, rs);  
 	        }
 	        
-	        return true;
+	        return vo;
 	    }
 	
 	

@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										
 										<ul class="nav nav-children">
 											<li><a href="goodslist.jsp" target="container"><span class="text"> 现存商品信息表</span></a></li>
-											<li><a href="buygoodslist.jsp" target="container"><span class="text"> 买入商品信息表</span></a></li>						
+											<li><a href="PageServ" target="container"><span class="text"> 买入商品信息表</span></a></li>						
 											<li><a href="salegoodslist.jsp" target="container"><span class="text"> 卖出商品信息表</span></a></li>
 																					
 										</ul>

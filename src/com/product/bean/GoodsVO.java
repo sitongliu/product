@@ -3,6 +3,7 @@ package com.product.bean;
 public class GoodsVO {
 	private String good_name,good_producter,description;
 	private int good_type,good_id;
+	private BuyItemVO vo;
 	public int getGood_id() {
 		return good_id;
 	}
@@ -23,6 +24,13 @@ public class GoodsVO {
 	}
 	public String getDescription() {
 		return description;
+	}
+	
+	public BuyItemVO getVo() {
+		return vo;
+	}
+	public void setVo(BuyItemVO vo) {
+		this.vo = vo;
 	}
 	public void setDescription(String description) {
 		this.description = description;

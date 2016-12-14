@@ -19,8 +19,8 @@ public class BuyItemServ extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 	     
 		String  good_name = request.getParameter("good_name");
 		String  good_producter = request.getParameter("good_producter");
@@ -34,7 +34,7 @@ public class BuyItemServ extends HttpServlet {
 		goods.setDescription(description);
 		goods.setGood_name(good_name);
 		goods.setGood_producter(good_producter);
-		
+		goods.setGood_type(Integer.parseInt(good_type));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy:MM:dd");	
 		Date now = new Date();

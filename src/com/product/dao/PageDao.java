@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.product.Utils.JDBCUtils;
+import com.product.bean.BuyItemVO;
 import com.product.bean.GoodsVO;
 
 public class PageDao {
@@ -15,54 +16,64 @@ public class PageDao {
 	 private static Statement stmt;
 	 private static int pagesize=5;
 	 
-	 //通用的查询方法
-	 public static ResultSet ExecuteQuery(String sql) {
-	  try {
-	   conn=JDBCUtils.getConnection();
-	   stmt=conn.createStatement();
-	   rs=stmt.executeQuery(sql);
-	  } catch (SQLException e) {
-	   e.printStackTrace();
-	  }
-	  return rs;
-	 }
-
 	 //分页逻辑
 	
 
-public static ArrayList<GoodsVO> getGoodsList(int currentpageno){
+public  ArrayList<GoodsVO> getGoodsList(int pageno,int pagecount){
+	
 	  ArrayList<GoodsVO> GoodsList=new ArrayList<GoodsVO>();
-	  int BeginRecord=(currentpageno-1)*pagesize;
-	  int EndRecord=currentpageno*pagesize;
-	  rs=ExecuteQuery("select * from goods limit "+BeginRecord+","+EndRecord);
+	  int BeginRecord=(pageno-1)*pagecount;
+	  int EndRecord=pagecount;
+	  try {
+		conn=JDBCUtils.getConnection();
+		stmt=conn.createStatement();
+		rs=stmt.executeQuery("select * from goods a,buyitem b where a.good_id=b.good_id limit "+BeginRecord+","+EndRecord);
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	   
 	  try {
 	   while(rs.next()){
 	    GoodsVO goods=new GoodsVO();
-	    goods.setGood_id(rs.getInt(1));
-	    goods.setGood_name(rs.getString(2));
-	    goods.setGood_producter(rs.getString(3));
-	    goods.setGood_type(rs.getInt(4));
+	    BuyItemVO vo=new BuyItemVO();
+	    goods.setGood_id(rs.getInt("good_id"));
+	    goods.setGood_name(rs.getString("good_name"));
+	    goods.setGood_producter(rs.getString("good_producter"));
+	    goods.setGood_type(rs.getInt("good_type"));
+	    vo.setGood_num(rs.getInt("good_num"));
+	    vo.setBuy_price(rs.getInt("buy_price"));
+	    goods.setVo(vo);
 	    GoodsList.add(goods);
 	   }
 	  } catch (SQLException e) {
 	   e.printStackTrace();
+	  }finally{
+		  JDBCUtils.release(conn, stmt, rs);
 	  }
 	  return GoodsList;
 	 }
 	 
 	 //统计记录数
-	 public static int getPageCount(){
-	  int total=0;
-	  int PageCount=0;
-	  rs=ExecuteQuery("select count(*) from goods");
+	 public int getPageCount(){
+		 try {
+			conn=JDBCUtils.getConnection();
+			 stmt=conn.createStatement();
+			 rs=stmt.executeQuery("select count(*) from goods");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 int count=0;
 	  try {
 	   if(rs.next()){
-	    total=rs.getInt(1);
-	    PageCount=(total-1)/pagesize+1;
+	    count=rs.getInt(1);
 	   }
 	  } catch (SQLException e) {
 	   e.printStackTrace();
+	  }finally{
+		  JDBCUtils.release(conn, stmt, rs);
 	  }
-	  return PageCount;
+	  return count;
 	 }
 }
