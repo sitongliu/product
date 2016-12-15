@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="form-group">
 											<label class="col-md-2 control-label" for="select">商品类型</label>
 											<div class="col-md-9">
-												<select id="select" name="select" class="form-control" size="1">
+												<select id="select" name="good_type" class="form-control" size="1">
 													<option value="0">请选择商品类型</option>
 													<option value="1">服 装</option>
 													<option value="2">食 品</option>
@@ -111,8 +111,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 										
 										<div style="width:300px;margin-left:400px">
-										   <input type="button"  class="btn" value="重置数据">
-										   <input type="button"  class="btn" style="margin-left:50px;" value="保存数据">
+										   <input type="reset"  class="btn" value="重置数据">
+										   <input type="submit"  class="btn" style="margin-left:50px;" value="保存数据">
 										</div>
 										
 										

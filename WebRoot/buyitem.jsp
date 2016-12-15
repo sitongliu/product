@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="form-group">
 											<label class="col-md-2 control-label" for="good_name">商品名称</label>
 											<div class="col-md-9">
-												<input type="text" id="good_name" name="good_name" class="form-control" value="name">
+												<input type="text" id="good_name" name="good_name" class="form-control">
 											</div>
 										</div>
 										<div class="form-group">
@@ -106,8 +106,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 										
 										<div style="width:300px;margin-left:400px">
-										   <input type="button"  class="btn" value="重置数据">
-										   <input type="submit"  class="btn" style="margin-left:50px;" value="保存数据">
+										   <input type="reset"  class="btn" value="重置数据">
+										   <input type="submit"  class="btn" style="margin-left:50px;" value="保存数据" onclick="tijiao()">
 										</div>
 										
 										
@@ -145,5 +145,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="assets/js/pages/form-elements.js"></script>
 		
 		<!-- end: JavaScript-->
+		
+		<script type="text/javascript">
+			function tijiao(){
+			var good_name = document.getElementById("good_name").value();
+			if(good_name != ""){
+			alert("插入成功");
+			}
+			
+			}
+		</script>
   
 </html>

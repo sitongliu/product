@@ -3,12 +3,20 @@ package com.product.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Page {
+public class PageVO {
 	int pageNo=1;//当前页号
 	int pageCount;//总页数
 	int pageTotal=10;//每页记录数
 	int pageTotalCount;//总的记录数
 	List<GoodsVO>list=new ArrayList<GoodsVO>();
+	List<SaleItemVO>salelist = new ArrayList<SaleItemVO>();
+	
+	public List<SaleItemVO> getSalelist() {
+		return salelist;
+	}
+	public void setSalelist(List<SaleItemVO> salelist) {
+		this.salelist = salelist;
+	}
 	public int getPageNo() {
 		return pageNo;
 	}

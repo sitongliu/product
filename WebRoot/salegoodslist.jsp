@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -39,38 +40,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</tr>
 											</thead>   
 											<tbody>
+												<c:forEach var="salegoods" items="${saleitemvo.list}"> 
 												<tr>
-													<td>Willson</td>
-													<td>Developer</td>
-													<td>2563$</td>
-													<td>12</td>    
-													<td>12</td>                                   
+													<td>${salegoods.good_name }</td>
+													<td>${salegoods.good_producter }</td>
+													<td><c:if test="${salegoods.good_type==2 }">食品</c:if>
+													 <c:if test="${salegoods.good_type== 2}">药品</c:if>
+													 <c:if test="${salegoods.good_type==1 }">服装</c:if>
+													</td>
+													<td>${salegoods.saleitemvo.sale_num }</td>    
+													<td>${salegoods.saleitemvo.sale_price }</td>                                   
 												</tr>
-												<tr>
-													<td>Willson</td>
-													<td>Developer</td>
-													<td>2563$</td>
-													<td>12</td>                                       
-												</tr>
-												<tr>
-													<td>Willson</td>
-													<td>Developer</td>
-													<td>2563$</td>
-													<td>12</td>                                       
-												</tr>
-												<tr>
-													<td>Willson</td>
-													<td>Developer</td>
-													<td>2563$</td>
-													<td>12</td>                                       
-												</tr>								                                   
+										</c:forEach>		                                   
 											</tbody>
 										</table>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>			   
+					</div>			
+			   <a href="SalePageServ?pageNo=1">首页</a>		   
+	           <c:if test="${saleitemvo.pageNo>1}">
+                    <a href="SalePageServ?pageNo=${saleitemvo.pageNo-1}">上一页</a>
+               </c:if>
+               <c:if test="${saleitemvo.pageNo<saleitemvo.pageCount}">
+                    <a href="SalePageServ?pageNo=${saleitemvo.pageNo+1}">下一页</a>
+               </c:if>
+               <a href="SalePageServ?pageNo=${saleitemvo.pageCount}">尾页</a>
+                                                          总页数${saleitemvo.pageCount}   
 							
   </body>
         <script src="assets/vendor/js/jquery.min.js"></script>

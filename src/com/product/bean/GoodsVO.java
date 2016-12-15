@@ -4,6 +4,8 @@ public class GoodsVO {
 	private String good_name,good_producter,description;
 	private int good_type,good_id;
 	private BuyItemVO vo;
+	private SaleItemVO saleitemvo;
+	
 	public int getGood_id() {
 		return good_id;
 	}
@@ -41,5 +43,12 @@ public class GoodsVO {
 	public void setGood_type(int good_type) {
 		this.good_type = good_type;
 	}
+	public SaleItemVO getSaleitemvo() {
+		return saleitemvo;
+	}
+	public void setSaleitemvo(SaleItemVO saleitemvo) {
+		this.saleitemvo = saleitemvo;
+	}
+	
 
 }

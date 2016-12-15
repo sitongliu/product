@@ -20,36 +20,32 @@ public class SaleItemServ extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+		
 		String good_name = request.getParameter("good_name");
 		String good_producter= request.getParameter("good_producter");
 		String sale_price= request.getParameter("sale_price");
-		String sale_time = request.getParameter("sale_time");
+	//	String sale_time = request.getParameter("sale_time");
 		String sale_num = request.getParameter("sale_num");
 		String good_type = request.getParameter("good_type");
 		String sale_bz = request.getParameter("sale_bz");
+		
 		GoodsDao dao1=new GoodsDao();
 		GoodsVO good=dao1.findgoods(good_name,good_producter,Integer.parseInt(good_type));
 		if(good!=null){
 			SaleItemDao dao2=new SaleItemDao();
-			SaleItemVO vo=new SaleItemVO();
-			vo.setGood_id(good.getGood_id());
-			vo.setSale_bz(sale_bz);
-			vo.setSale_num(Integer.parseInt(sale_num));
-			vo.setSale_price(Integer.parseInt(sale_price));
-			vo.setSale_time(Date.valueOf(sale_time));
-			dao2.savesaleitem(vo);
+			SaleItemVO saleitemvo=new SaleItemVO();
+			saleitemvo.setGood_id(good.getGood_id());
+			saleitemvo.setSale_bz(sale_bz);
+			saleitemvo.setSale_num(Integer.parseInt(sale_num));
+			saleitemvo.setSale_price(Integer.parseInt(sale_price));
+		//	saleitemvo.setSale_time(Date.valueOf(sale_time));
+			dao2.savesaleitem(saleitemvo);
 		}
 		else{
 			request.setAttribute("symbol","true");
 		}
 		request.getRequestDispatcher("saleitem.jsp").forward(request,response);
-		
-		
-		
-		
-		
-
-	
+			
 	}
 
 

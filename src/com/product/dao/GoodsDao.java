@@ -3,13 +3,9 @@ package com.product.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 import com.product.Utils.JDBCUtils;
-import com.product.bean.BuyItemVO;
 import com.product.bean.GoodsVO;
-import com.product.bean.SaleItemVO;
-
 public class GoodsDao {
 	
 	private static GoodsDao instance = null;
@@ -50,7 +46,7 @@ public class GoodsDao {
 		return autoIncKey;
 	}
 	
-
+/*
 	//删除商品信息
 	public int deletegoods(GoodsVO goods){
 		
@@ -71,8 +67,8 @@ public class GoodsDao {
 	            if(num>0){
 	              System.out.println("删除成功！！");
 	            }
-	          /*  if(rs.next()){
-		            autoIncKey = rs.getInt(1); }*/
+	            if(rs.next()){
+		            autoIncKey = rs.getInt(1); }
 	        }catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
@@ -82,7 +78,7 @@ public class GoodsDao {
 	     
 	     
 		return 0;
-	}
+	}*/
 	
 	
 	//查找商品信息

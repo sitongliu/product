@@ -2,7 +2,6 @@ package com.product.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,11 +13,13 @@ import com.product.bean.GoodsVO;
 import com.product.bean.PageVO;
 import com.product.dao.PageDao;
 
-public class PageServ extends HttpServlet {
+public class SalePageServ extends HttpServlet {
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		  response.setContentType("text/html;charset=UTF-8");
 		  request.setCharacterEncoding("UTF-8");
+		  
 		  String pageNo= request.getParameter("pageNo");
 		  String pageCount=request.getParameter("pageCount");
 		  int pageno=1;
@@ -30,20 +31,23 @@ public class PageServ extends HttpServlet {
 			  pagecount=Integer.parseInt(pageCount);
 		  }
 		 PageDao dao=new PageDao();
-		 List<GoodsVO>list=dao.getGoodsList(pageno, pagecount);
-		 int pageTotalCount=dao.getPageCount();
-		 PageVO pageVO=new PageVO();
-		 pageVO.setList(list);
-		 pageVO.setPageTotalCount(pageTotalCount);
-		 pageVO.setPageCount(pagecount);
-		 pageVO.setPageNo(pageno);
-		 request.setAttribute("page",pageVO);
-		 request.getRequestDispatcher("buygoodslist.jsp").forward(request, response);
+		 List<GoodsVO>list=dao.getsaleGoodsList(pageno, pagecount);
+		 int pageTotalCount=dao.getsalePageCount();
+		 PageVO page=new PageVO();
+		 page.setList(list);
+		 page.setPageTotalCount(pageTotalCount);
+		 page.setPageCount(pagecount);
+		 page.setPageNo(pageno);
+		 request.setAttribute("saleitemvo",page);
+		 request.getRequestDispatcher("salegoodslist.jsp").forward(request, response);
+		 
+	
 	}
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
-		
+		doGet(request,response);
+
 	}
 
 }

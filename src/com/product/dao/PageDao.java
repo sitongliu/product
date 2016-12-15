@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.product.Utils.JDBCUtils;
 import com.product.bean.BuyItemVO;
 import com.product.bean.GoodsVO;
+import com.product.bean.SaleItemVO;
 
 public class PageDao {
 	 private static Connection conn;
@@ -53,10 +54,47 @@ public  ArrayList<GoodsVO> getGoodsList(int pageno,int pagecount){
 	  }
 	  return GoodsList;
 	 }
-	 
+
+
+
+public  ArrayList<GoodsVO> getsaleGoodsList(int pageno,int pagecount){
+	
+	  ArrayList<GoodsVO> GoodsList=new ArrayList<GoodsVO>();
+	  int BeginRecord=(pageno-1)*pagecount;
+	  int EndRecord=pagecount;
+	  try {
+		conn=JDBCUtils.getConnection();
+		stmt=conn.createStatement();
+		rs=stmt.executeQuery("select * from goods a,saleitem b where a.good_id=b.good_id limit "+BeginRecord+","+EndRecord);
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	   
+	  try {
+	   while(rs.next()){
+	    GoodsVO goods=new GoodsVO();
+	    SaleItemVO saleitemvo=new SaleItemVO();
+	    goods.setGood_id(rs.getInt("good_id"));
+	    goods.setGood_name(rs.getString("good_name"));
+	    goods.setGood_producter(rs.getString("good_producter"));
+	    goods.setGood_type(rs.getInt("good_type"));
+	    saleitemvo.setSale_num(rs.getInt("sale_num"));
+	    saleitemvo.setSale_price(rs.getInt("sale_price"));
+	    goods.setSaleitemvo(saleitemvo);
+	    GoodsList.add(goods);
+	   }
+	  } catch (SQLException e) {
+	   e.printStackTrace();
+	  }finally{
+		  JDBCUtils.release(conn, stmt, rs);
+	  }
+	  return GoodsList;
+	 }
+
 	 //统计记录数
-	 public int getPageCount(){
-		 try {
+public int getPageCount(){
+	  try {
 			conn=JDBCUtils.getConnection();
 			 stmt=conn.createStatement();
 			 rs=stmt.executeQuery("select count(*) from goods");
@@ -76,4 +114,29 @@ public  ArrayList<GoodsVO> getGoodsList(int pageno,int pagecount){
 	  }
 	  return count;
 	 }
+
+public int getsalePageCount(){
+	  try {
+			conn=JDBCUtils.getConnection();
+			 stmt=conn.createStatement();
+			 rs=stmt.executeQuery("select count(*) from saleitem");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 int count=0;
+	  try {
+	   if(rs.next()){
+	    count=rs.getInt(1);
+	   }
+	  } catch (SQLException e) {
+	   e.printStackTrace();
+	  }finally{
+		  JDBCUtils.release(conn, stmt, rs);
+	  }
+	  return count;
+	 }
+
+
+
 }

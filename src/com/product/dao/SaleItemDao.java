@@ -25,13 +25,13 @@ private static SaleItemDao instance = null;
 	     
 	     try{
 	            conn = JDBCUtils.getConnection();
-	            String sql = "insert into saleitem(good_id,sale_price,sale_time,sale_num,sale_bz) values(?,?,?,?,?)"; 
+	            String sql = "insert into saleitem(good_id,sale_price,sale_num,sale_bz) values(?,?,?,?)"; 
 	            pstm = conn.prepareStatement(sql); 
 	            pstm.setInt(1, saleitem.getGood_id());
 	            pstm.setInt(2,saleitem.getSale_price());
-	            pstm.setDate(3,saleitem.getSale_time());
-	            pstm.setInt(4,saleitem.getSale_num());
-	            pstm.setString(5,saleitem.getSale_bz());
+	          //  pstm.setDate(3,saleitem.getSale_time());
+	            pstm.setInt(3,saleitem.getSale_num());
+	            pstm.setString(4,saleitem.getSale_bz());
 	            pstm.execute();
 	        }catch (Exception e) {
 	            e.printStackTrace();
