@@ -90,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="form-group">
 											<label class="col-md-2 control-label" for="good_type">商品类型</label>
 											<div class="col-md-9">
-												<select id="select" name="good_type" class="form-control" size="1">
+												<select id="select" id= "good_type" name="good_type" class="form-control" size="1">
 													<option value="0">请选择</option>
 													<option value="1">服 装</option>
 													<option value="2">食 品</option>
@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<div class="form-group">
 											<label class="col-md-2 control-label" for="description">商品描述</label>
 											<div class="col-md-9">
-												<textarea id="textarea-input" name="description" rows="9" class="form-control"></textarea>
+												<textarea id="textarea-input" id="description" name="description" rows="9" class="form-control"></textarea>
 											</div>
 										</div>
 										
@@ -146,14 +146,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<!-- end: JavaScript-->
 		
-		<script type="text/javascript">
+	<!-- 	<script type="text/javascript">
 			function tijiao(){
-			var good_name = document.getElementById("good_name").value();
-			if(good_name != ""){
-			alert("插入成功");
+			  var good_name = document.getElementById("good_name").value;
+	          /*  var buy_price = document.getElementById("buy_price").value;
+	            var good_num = document.getElementById("good_num").value;
+	             var good_producter = document.getElementById("good_producter").value;
+	              var good_type = document.getElementById("good_type").value;
+	               var description = document.getElementById("description").value; */
+		  if(!"".equals(good_name)){
+			  alert("插入成功");
+			}else{
+			alert("插入失败");
 			}
 			
-			}
-		</script>
-  
+			} </script>
+  -->
+		
 </html>

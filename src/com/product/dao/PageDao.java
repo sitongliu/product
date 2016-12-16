@@ -57,6 +57,80 @@ public  ArrayList<GoodsVO> getGoodsList(int pageno,int pagecount){
 
 
 
+//查找商品
+public  ArrayList<GoodsVO> findGoodsList(int pageno,int pagecount,String subsql){
+	
+	  ArrayList<GoodsVO> GoodsList=new ArrayList<GoodsVO>();
+	  int BeginRecord=(pageno-1)*pagecount;
+	  int EndRecord=pagecount;
+	  try {
+		conn=JDBCUtils.getConnection();
+		stmt=conn.createStatement();
+		rs=stmt.executeQuery("select * from goods where goods.good_name like '%"+subsql+"%' or  goods.good_type like '%"+subsql+"%' or  goods.good_producter like '%"+subsql+"%'  limit "+BeginRecord+","+EndRecord);
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	   
+	  try {
+		   while(rs.next()){
+		    GoodsVO goods=new GoodsVO();
+		    goods.setGood_id(rs.getInt("good_id"));
+		    goods.setGood_name(rs.getString("good_name"));
+		    goods.setGood_producter(rs.getString("good_producter"));
+		    goods.setGood_type(rs.getInt("good_type"));
+		    goods.setDescription(rs.getString("description"));
+		    GoodsList.add(goods);
+		   }
+		  } catch (SQLException e) {
+		   e.printStackTrace();
+		  }finally{
+			  JDBCUtils.release(conn, stmt, rs);
+		  }
+		  return GoodsList;
+	 }
+
+
+
+
+
+
+public  ArrayList<GoodsVO> getnowList(int pageno,int pagecount){
+	
+	  ArrayList<GoodsVO> GoodsList=new ArrayList<GoodsVO>();
+	  int BeginRecord=(pageno-1)*pagecount;
+	  int EndRecord=pagecount;
+	  try {
+		conn=JDBCUtils.getConnection();
+		stmt=conn.createStatement();
+		rs=stmt.executeQuery("select * from goods  limit "+BeginRecord+","+EndRecord);
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	   
+	  try {
+	   while(rs.next()){
+	    GoodsVO goods=new GoodsVO();
+	    goods.setGood_id(rs.getInt("good_id"));
+	    goods.setGood_name(rs.getString("good_name"));
+	    goods.setGood_producter(rs.getString("good_producter"));
+	    goods.setGood_type(rs.getInt("good_type"));
+	    goods.setDescription(rs.getString("description"));
+	    GoodsList.add(goods);
+	   }
+	  } catch (SQLException e) {
+	   e.printStackTrace();
+	  }finally{
+		  JDBCUtils.release(conn, stmt, rs);
+	  }
+	  return GoodsList;
+	 }
+
+
+
+
+
 public  ArrayList<GoodsVO> getsaleGoodsList(int pageno,int pagecount){
 	
 	  ArrayList<GoodsVO> GoodsList=new ArrayList<GoodsVO>();
@@ -92,7 +166,7 @@ public  ArrayList<GoodsVO> getsaleGoodsList(int pageno,int pagecount){
 	  return GoodsList;
 	 }
 
-	 //统计记录数
+	 //统计买入和商品的记录数
 public int getPageCount(){
 	  try {
 			conn=JDBCUtils.getConnection();
@@ -115,6 +189,8 @@ public int getPageCount(){
 	  return count;
 	 }
 
+
+//统计卖出商品的总条数
 public int getsalePageCount(){
 	  try {
 			conn=JDBCUtils.getConnection();
@@ -137,6 +213,30 @@ public int getsalePageCount(){
 	  return count;
 	 }
 
+
+
+//统计根据条件查找后的数据的总条数
+public int getfindPageCount(String subsql){
+	  try {
+			conn=JDBCUtils.getConnection();
+			 stmt=conn.createStatement();
+			 rs=stmt.executeQuery("select count(*) from goods where goods.good_name like '%"+subsql+"%' or  goods.good_type like '%"+subsql+"%' or  goods.good_producter like '%"+subsql+"%' ");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 int count=0;
+	  try {
+	   if(rs.next()){
+	    count=rs.getInt(1);
+	   }
+	  } catch (SQLException e) {
+	   e.printStackTrace();
+	  }finally{
+		  JDBCUtils.release(conn, stmt, rs);
+	  }
+	  return count;
+	 }
 
 
 }

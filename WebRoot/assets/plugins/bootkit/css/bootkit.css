@@ -238,7 +238,7 @@
 .fa-4x { font-size: 4em; }
 .fa-5x { font-size: 5em; } //also used for minimum compilation*/
 .bk-border-primary {
-  border: 1px solid #34495E !important;
+  border: 1px solid #3c6a92 !important;
 }
 a:not(.btn).bk-border-primary.bk-border-darken:hover {
   border: 1px solid #1e74c5;
@@ -480,7 +480,7 @@ a:not(.btn).bk-bg-very-light-gray.bk-bg-lighten:hover {
   background-color: #dddddd;
 }
 .bk-bg-primary {
-  background-color: #34495E !important;
+  background-color: #3c6a92 !important;
   color: #ffffff;
 }
 .bk-bg-primary.bk-bg-darken a:not(.btn) {
@@ -601,7 +601,7 @@ a:hover .bk-bg-primary.bk-bg-darken {
   background-color: #435D78 !important;
 }
 a:hover .bk-bg-primary.bk-bg-lighten {
-  background-color: #34495E !important;
+  background-color: #3c6a92 !important;
 }
 a:hover .bk-bg-success.bk-bg-darken {
   background-color: #388538 !important;
@@ -646,7 +646,7 @@ a:hover .bk-bg-very-light-gray.bk-bg-lighten {
   background-color: #ffffff !important;
 }
 .bk-fg-primary {
-  color: #34495E !important;
+  color: #3c6a92 !important;
 }
 a:not(.btn).bk-fg-primary.bk-fg-darken:hover {
   text-decoration: none;
@@ -1069,7 +1069,7 @@ a.bk-opacity-inverse img {
   padding-top: 44px;
 }
 .bk-hr-primary {
-  border-top: 1px solid #34495E;
+  border-top: 1px solid #3c6a92;
 }
 .bk-hr-success {
   border-top: 1px solid #47a947;
