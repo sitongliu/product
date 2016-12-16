@@ -22,6 +22,7 @@ public class GoodsFindServ extends HttpServlet {
 		  String pageNo= request.getParameter("pageNo");
 		  String pageCount=request.getParameter("pageCount");
 		  String subsql= request.getParameter("subsqlvalue");
+		  String subsql1 = request.getParameter("subsql");
 		  int pageno=1;
 		  int pagecount=10;
 		  if(!"".equals(pageNo)&&pageNo!=null){
@@ -31,7 +32,7 @@ public class GoodsFindServ extends HttpServlet {
 			  pagecount=Integer.parseInt(pageCount);
 		  }
 		 PageDao dao=new PageDao();
-		 List<GoodsVO>list=dao.findGoodsList(pageno, pagecount,subsql);
+		 List<GoodsVO>list=dao.findGoodsList(pageno, pagecount,subsql,subsql1);
 		 int pageTotalCount=dao.getfindPageCount(subsql);
 		 PageVO goodspage=new PageVO();
 		 goodspage.setList(list);

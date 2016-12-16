@@ -40,6 +40,7 @@ public class SaleItemServ extends HttpServlet {
 			saleitemvo.setSale_price(Integer.parseInt(sale_price));
 		//	saleitemvo.setSale_time(Date.valueOf(sale_time));
 			dao2.savesaleitem(saleitemvo);
+		//	dao1.deletegoods(good.getGood_id());
 		}
 		else{
 			request.setAttribute("symbol","true");

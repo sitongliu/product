@@ -58,7 +58,7 @@ public  ArrayList<GoodsVO> getGoodsList(int pageno,int pagecount){
 
 
 //≤È’“…Ã∆∑
-public  ArrayList<GoodsVO> findGoodsList(int pageno,int pagecount,String subsql){
+public  ArrayList<GoodsVO> findGoodsList(int pageno,int pagecount,String subsql,String subsql1){
 	
 	  ArrayList<GoodsVO> GoodsList=new ArrayList<GoodsVO>();
 	  int BeginRecord=(pageno-1)*pagecount;
@@ -66,7 +66,8 @@ public  ArrayList<GoodsVO> findGoodsList(int pageno,int pagecount,String subsql)
 	  try {
 		conn=JDBCUtils.getConnection();
 		stmt=conn.createStatement();
-		rs=stmt.executeQuery("select * from goods where goods.good_name like '%"+subsql+"%' or  goods.good_type like '%"+subsql+"%' or  goods.good_producter like '%"+subsql+"%'  limit "+BeginRecord+","+EndRecord);
+		rs=stmt.executeQuery("select * from goods where "+subsql1+" like '%"+subsql+"%' ");
+		//rs=stmt.executeQuery("select * from goods where goods.good_name like '%"+subsql+"%' or  goods.good_type like '%"+subsql+"%' or  goods.good_producter like '%"+subsql+"%'  limit "+BeginRecord+","+EndRecord);
 	} catch (SQLException e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();

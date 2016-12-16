@@ -46,29 +46,24 @@ public class GoodsDao {
 		return autoIncKey;
 	}
 	
-/*
-	//删除商品信息
-	public int deletegoods(GoodsVO goods){
+
+//	删除商品信息
+	public GoodsVO deletegoods(int id){
 		
 		 Connection conn = null;
 	     ResultSet rs = null;
 	     PreparedStatement   pstm = null;
-	     //int autoIncKey = -1;
+	     GoodsVO vo = null;
+	       id  = vo.getGood_id();
 	     try{
 	            conn = JDBCUtils.getConnection();
-	            String sql = "delete from goods where good_name=?, good_type=?,good_producter=?"; 
+	            String sql = "delete from goods where good_id="+id+""; 
 	            pstm = conn.prepareStatement(sql);  //,new String[]{"goods_id"}
-	            pstm.setString(1, goods.getGood_name());
-	            pstm.setInt(2, goods.getGood_type());
-	            pstm.setString(3, goods.getGood_producter());
 	            pstm.executeUpdate();
-	            //rs = pstm.getGeneratedKeys();
 	            int num = pstm.executeUpdate();
 	            if(num>0){
 	              System.out.println("删除成功！！");
 	            }
-	            if(rs.next()){
-		            autoIncKey = rs.getInt(1); }
 	        }catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
@@ -77,11 +72,11 @@ public class GoodsDao {
 	        }
 	     
 	     
-		return 0;
-	}*/
+		return vo;
+	}
 	
 	
-	//查找商品信息
+	//在卖出表插入之前判断是否有输入的商品    有就插入插入之后删除      没有就不插入
 	 public GoodsVO  findgoods(String good_name,String good_producter,int good_type){
 	        Connection conn = null;
 	        PreparedStatement st = null;

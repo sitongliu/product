@@ -35,7 +35,10 @@
 
 					<tr bgcolor="lightgrey">
 						<td align="center" colspan="5">
-						输入查找关键字： <input type="text" name="subsqlvalue" size="17"> 
+						输入查找关键字： <select name="subsql">
+								<option value="good_name">商品名</option>
+								<option value="good_producter">生产厂商</option>
+						</select> <input type="text" name="subsqlvalue" size="17"> 
 						<input type="submit"  name="searchpart" value="查询" onclick="return check()">
 						</td>
 					</tr>
@@ -51,6 +54,7 @@
 									<th>生产厂商</th>
 									<th>商品类别</th>
 									<th>商品描述</th>
+									<th>删除</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -62,6 +66,7 @@
 												test="${nowgoods.good_type==2 }">药品</c:if> <c:if
 												test="${nowgoods.good_type==3 }">服装</c:if></td>
 										<td>${nowgoods.description }</td>
+										<td><a href="">删除</a></td>
 
 									</tr>
 								</c:forEach>
@@ -91,17 +96,10 @@
 
 <script language="javascript">
 	function check() {
-		if (searchform.subsqlvalue.value == "") {
+		if (searchform.subsqlvalue.value==null||searchform.subsqlvalue.value == "") {
 			alert("请输入查询的条件");
 			searchform.subsqlvalue.focus();
 			return false;
-		}
-		if (searchform.subsql.value == "good_type") {
-			if (isNaN(searchform.subsqlvalue.value)) {
-				alert("输入的年龄必须为数字！");
-				searchform.subsqlvalue.focus();
-				return false;
-			}
 		}
 	}
 </script>
