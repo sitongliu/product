@@ -2,7 +2,25 @@ package com.product.bean;
 
 public class GoodsVO {
 	private String good_name,good_producter,description;
-	private int good_type,good_id;
+	private int good_type,good_id,buy_id,sale_id,saled;
+	public int getSaled() {
+		return saled;
+	}
+	public void setSaled(int saled) {
+		this.saled = saled;
+	}
+	public int getBuy_id() {
+		return buy_id;
+	}
+	public void setBuy_id(int buy_id) {
+		this.buy_id = buy_id;
+	}
+	public int getSale_id() {
+		return sale_id;
+	}
+	public void setSale_id(int sale_id) {
+		this.sale_id = sale_id;
+	}
 	private BuyItemVO vo;
 	private SaleItemVO saleitemvo;
 	

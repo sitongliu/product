@@ -20,6 +20,7 @@ public class PageDao {
 	 //分页逻辑
 	
 
+	 //获取买入的商品
 public  ArrayList<GoodsVO> getGoodsList(int pageno,int pagecount){
 	
 	  ArrayList<GoodsVO> GoodsList=new ArrayList<GoodsVO>();
@@ -28,7 +29,7 @@ public  ArrayList<GoodsVO> getGoodsList(int pageno,int pagecount){
 	  try {
 		conn=JDBCUtils.getConnection();
 		stmt=conn.createStatement();
-		rs=stmt.executeQuery("select * from goods a,buyitem b where a.good_id=b.good_id limit "+BeginRecord+","+EndRecord);
+		rs=stmt.executeQuery("select * from goods a,buyitem b where a.buy_id=b.buy_id limit "+BeginRecord+","+EndRecord);
 	} catch (SQLException e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
@@ -57,7 +58,7 @@ public  ArrayList<GoodsVO> getGoodsList(int pageno,int pagecount){
 
 
 
-//查找商品
+//在现存商品表中查找商品后分页
 public  ArrayList<GoodsVO> findGoodsList(int pageno,int pagecount,String subsql,String subsql1){
 	
 	  ArrayList<GoodsVO> GoodsList=new ArrayList<GoodsVO>();
@@ -95,7 +96,7 @@ public  ArrayList<GoodsVO> findGoodsList(int pageno,int pagecount,String subsql,
 
 
 
-
+//获取现存商品信息表
 public  ArrayList<GoodsVO> getnowList(int pageno,int pagecount){
 	
 	  ArrayList<GoodsVO> GoodsList=new ArrayList<GoodsVO>();
@@ -132,6 +133,7 @@ public  ArrayList<GoodsVO> getnowList(int pageno,int pagecount){
 
 
 
+//获取卖出商品
 public  ArrayList<GoodsVO> getsaleGoodsList(int pageno,int pagecount){
 	
 	  ArrayList<GoodsVO> GoodsList=new ArrayList<GoodsVO>();
@@ -140,7 +142,7 @@ public  ArrayList<GoodsVO> getsaleGoodsList(int pageno,int pagecount){
 	  try {
 		conn=JDBCUtils.getConnection();
 		stmt=conn.createStatement();
-		rs=stmt.executeQuery("select * from goods a,saleitem b where a.good_id=b.good_id limit "+BeginRecord+","+EndRecord);
+		rs=stmt.executeQuery("select * from goods a,saleitem b where a.sale_id=b.sale_id limit "+BeginRecord+","+EndRecord);
 	} catch (SQLException e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
@@ -166,6 +168,9 @@ public  ArrayList<GoodsVO> getsaleGoodsList(int pageno,int pagecount){
 	  }
 	  return GoodsList;
 	 }
+
+
+//查出goods表里面的信息  sale_id 
 
 	 //统计买入和商品的记录数
 public int getPageCount(){

@@ -6,18 +6,19 @@ import java.sql.Date;
 
 public class BuyItemVO {
 	private Date buy_time;
-	private int buy_id,good_num,buy_price,good_id;
+	private int buy_id,good_num,buy_price;
+	private String buy_bz;
+	public String getBuy_bz() {
+		return buy_bz;
+	}
+	public void setBuy_bz(String buy_bz) {
+		this.buy_bz = buy_bz;
+	}
 	public int getBuy_id() {
 		return buy_id;
 	}
 	public void setBuy_id(int buy_id) {
 		this.buy_id = buy_id;
-	}
-	public int getGood_id() {
-		return good_id;
-	}
-	public void setGood_id(int good_id) {
-		this.good_id = good_id;
 	}
 	
 	public Date getBuy_time() {

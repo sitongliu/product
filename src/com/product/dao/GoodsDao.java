@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.product.Utils.JDBCUtils;
+import com.product.bean.BuyItemVO;
 import com.product.bean.GoodsVO;
 public class GoodsDao {
 	
@@ -18,32 +19,31 @@ public class GoodsDao {
 	}
 	
 	//保存买入商品信息
-	public int savegoods(GoodsVO goods) {
+	public int savegoods(GoodsVO goods,int a) {
 		 Connection conn = null;
 	     ResultSet rs = null;
 	     PreparedStatement   pstm = null;
-	     int autoIncKey = -1;
+	    
 	     try{
 	            conn = JDBCUtils.getConnection();
-	            String sql = "insert into goods(good_name,good_producter,description,good_type) values(?,?,?,?)"; 
-	            pstm = conn.prepareStatement(sql,new String[]{"goods_id"}); 
+	            String sql = "insert into goods(good_name,good_producter,description,good_type,buy_id) values(?,?,?,?,?)"; 
+	            pstm = conn.prepareStatement(sql); 
+	            
+	            
 	            pstm.setString(1,goods.getGood_name());
 	            pstm.setString(2, goods.getGood_producter());
 	            pstm.setString(3, goods.getDescription());
 	            pstm.setInt(4,goods.getGood_type());
+	            pstm.setInt(5,a);
 	            pstm.execute();
-	            rs = pstm.getGeneratedKeys();
-	            if(rs.next()){
-		            autoIncKey = rs.getInt(1); }
+	            
 	        }catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
 	            //SQL执行完成之后释放相关资源
 	            JDBCUtils.release(conn, pstm, rs);
 	        }
-	     
-	     
-		return autoIncKey;
+	     return 0;
 	}
 	
 
@@ -84,7 +84,7 @@ public class GoodsDao {
 	        GoodsVO vo=null;
 	        try{
 	            conn = JDBCUtils.getConnection();
-	            String sql = "select * from goods where good_name =? and good_producter=? and good_type=?";
+	           String sql = "select * from goods where good_name =? and good_producter=? and good_type=?";
 	            st = conn.prepareStatement(sql);
 	            st.setString(1,good_name);
 	            st.setString(2, good_producter);
@@ -108,7 +108,30 @@ public class GoodsDao {
 	        
 	        return vo;
 	    }
-	
-	
+	 
+	 
+	 //在goods表中插入数据
+	 
+	 public int insertsaleid (int saleid ,int goodid){
+		 
+		 Connection conn = null;
+	     ResultSet rs = null;
+	     PreparedStatement   pstm = null;
+	    
+	     try{
+	            conn = JDBCUtils.getConnection();
+	            String sql = "update goods a set a."+saleid+" where a.good_id = "+goodid+" "; 
+	            pstm = conn.prepareStatement(sql); 
+	        }catch (Exception e) {
+		        	e.printStackTrace();
+		        	System.out.println("查找失败");
+		            
+		        }finally{
+		            JDBCUtils.release(conn, pstm, rs);  
+		        }
+	     
+	     return 0;
+		        
+	 }
 
 }

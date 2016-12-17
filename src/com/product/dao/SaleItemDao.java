@@ -18,21 +18,25 @@ private static SaleItemDao instance = null;
 		return instance;
 
 }
-	public void savesaleitem(SaleItemVO saleitem){
+	public int savesaleitem(SaleItemVO saleitem){
 		 Connection conn = null;
 	     ResultSet rs = null;
 	     PreparedStatement   pstm = null;
+	     int autoIncKey = -1;
 	     
 	     try{
 	            conn = JDBCUtils.getConnection();
-	            String sql = "insert into saleitem(good_id,sale_price,sale_num,sale_bz) values(?,?,?,?)"; 
-	            pstm = conn.prepareStatement(sql); 
-	            pstm.setInt(1, saleitem.getGood_id());
+	            String sql = "insert into saleitem(sale_id,sale_price,sale_num,sale_bz) values(?,?,?,?)"; 
+	            pstm = conn.prepareStatement(sql,new String[]{"sale_id"}); 
+	            pstm.setInt(1, saleitem.getSale_id());
 	            pstm.setInt(2,saleitem.getSale_price());
 	          //  pstm.setDate(3,saleitem.getSale_time());
 	            pstm.setInt(3,saleitem.getSale_num());
 	            pstm.setString(4,saleitem.getSale_bz());
 	            pstm.execute();
+	            rs = pstm.getGeneratedKeys();
+	            if(rs.next()){
+		            autoIncKey = rs.getInt(1); }
 	        }catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
@@ -40,7 +44,7 @@ private static SaleItemDao instance = null;
 	            JDBCUtils.release(conn, pstm, rs);
 	        }
 		
-		
+	     return autoIncKey;
 	}
 	
 	

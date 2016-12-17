@@ -20,6 +20,7 @@ public class SaleItemServ extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+		int a = 0;
 		
 		String good_name = request.getParameter("good_name");
 		String good_producter= request.getParameter("good_producter");
@@ -31,16 +32,18 @@ public class SaleItemServ extends HttpServlet {
 		
 		GoodsDao dao1=new GoodsDao();
 		GoodsVO good=dao1.findgoods(good_name,good_producter,Integer.parseInt(good_type));
+		int goodid = good.getGood_id();
 		if(good!=null){
 			SaleItemDao dao2=new SaleItemDao();
 			SaleItemVO saleitemvo=new SaleItemVO();
-			saleitemvo.setGood_id(good.getGood_id());
 			saleitemvo.setSale_bz(sale_bz);
 			saleitemvo.setSale_num(Integer.parseInt(sale_num));
 			saleitemvo.setSale_price(Integer.parseInt(sale_price));
 		//	saleitemvo.setSale_time(Date.valueOf(sale_time));
-			dao2.savesaleitem(saleitemvo);
+			 a = dao2.savesaleitem(saleitemvo);
+			 dao1.insertsaleid(a,goodid);
 		//	dao1.deletegoods(good.getGood_id());
+
 		}
 		else{
 			request.setAttribute("symbol","true");

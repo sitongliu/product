@@ -30,12 +30,6 @@ public class BuyItemServ extends HttpServlet {
 		String  buy_price = request.getParameter("buy_price");
 		String  buy_time = request.getParameter("buy_time"); 	
 		
-		GoodsVO goods  = new GoodsVO();
-		goods.setDescription(description);
-		goods.setGood_name(good_name);
-		goods.setGood_producter(good_producter);
-		goods.setGood_type(Integer.parseInt(good_type));
-		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy:MM:dd");	
 		Date now = new Date();
 		String str = sdf.format(now);
@@ -43,9 +37,15 @@ public class BuyItemServ extends HttpServlet {
 		buyitem.setBuy_price(Integer.parseInt(buy_price));
 		buyitem.setGood_num(Integer.parseInt(good_num));
 		buyitem.setBuy_time(new java.sql.Date(now.getTime()));
-		boolean res2 = BuyItemDao.getInstance().savebuyitem(buyitem,goods);
-		System.out.println(res2);
 		
+		GoodsVO goods  = new GoodsVO();
+		goods.setDescription(description);
+		goods.setGood_name(good_name);
+		goods.setGood_producter(good_producter);
+		goods.setGood_type(Integer.parseInt(good_type));
+		
+	    int a = BuyItemDao.getInstance().savebuyitem(buyitem);		
+	    GoodsDao.getInstance().savegoods(goods,a);		
 		//录入信息成功之后跳转到买入商品信息页面
 		request.getRequestDispatcher("buyitem.jsp").forward(request,response);
 	        
