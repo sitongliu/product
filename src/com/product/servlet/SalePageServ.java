@@ -40,8 +40,7 @@ public class SalePageServ extends HttpServlet {
 		 page.setPageNo(pageno);
 		 request.setAttribute("saleitemvo",page);
 		 request.getRequestDispatcher("salegoodslist.jsp").forward(request, response);
-		 
-	
+
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

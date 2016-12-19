@@ -33,6 +33,7 @@ public class SaleItemServ extends HttpServlet {
 		GoodsDao dao1=new GoodsDao();
 		GoodsVO good=dao1.findgoods(good_name,good_producter,Integer.parseInt(good_type));
 		int goodid = good.getGood_id();
+		int saled = good.getSaled()-Integer.parseInt(sale_num);
 		if(good!=null){
 			SaleItemDao dao2=new SaleItemDao();
 			SaleItemVO saleitemvo=new SaleItemVO();
@@ -42,8 +43,7 @@ public class SaleItemServ extends HttpServlet {
 		//	saleitemvo.setSale_time(Date.valueOf(sale_time));
 			 a = dao2.savesaleitem(saleitemvo);
 			 dao1.insertsaleid(a,goodid);
-		//	dao1.deletegoods(good.getGood_id());
-
+			 dao1.updategoods(saled,goodid);
 		}
 		else{
 			request.setAttribute("symbol","true");

@@ -43,6 +43,7 @@ public class BuyItemServ extends HttpServlet {
 		goods.setGood_name(good_name);
 		goods.setGood_producter(good_producter);
 		goods.setGood_type(Integer.parseInt(good_type));
+		goods.setSaled(Integer.parseInt(good_num));
 		
 	    int a = BuyItemDao.getInstance().savebuyitem(buyitem);		
 	    GoodsDao.getInstance().savegoods(goods,a);		

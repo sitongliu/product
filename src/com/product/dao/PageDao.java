@@ -119,6 +119,7 @@ public  ArrayList<GoodsVO> getnowList(int pageno,int pagecount){
 	    goods.setGood_producter(rs.getString("good_producter"));
 	    goods.setGood_type(rs.getInt("good_type"));
 	    goods.setDescription(rs.getString("description"));
+	    goods.setSaled(rs.getInt("saled"));
 	    GoodsList.add(goods);
 	   }
 	  } catch (SQLException e) {
@@ -177,7 +178,7 @@ public int getPageCount(){
 	  try {
 			conn=JDBCUtils.getConnection();
 			 stmt=conn.createStatement();
-			 rs=stmt.executeQuery("select count(*) from goods");
+			 rs=stmt.executeQuery("select count(*) from buyitem");
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

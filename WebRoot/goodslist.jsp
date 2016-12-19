@@ -53,6 +53,7 @@
 									<th>商品名称</th>
 									<th>生产厂商</th>
 									<th>商品类别</th>
+									<th>商品数量</th>
 									<th>商品描述</th>
 									<th>删除</th>
 								</tr>
@@ -65,8 +66,9 @@
 										<td><c:if test="${nowgoods.good_type==1 }">食品</c:if> <c:if
 												test="${nowgoods.good_type==2 }">药品</c:if> <c:if
 												test="${nowgoods.good_type==3 }">服装</c:if></td>
+									    <td>${nowgoods.saled}</td>
 										<td>${nowgoods.description }</td>
-										<td><a href="">删除</a></td>
+										<td><a href="DeleteGoods?good_id=${nowgoods.good_id}">删除</a></td>
 
 									</tr>
 								</c:forEach>

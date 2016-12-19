@@ -45,6 +45,7 @@
     <servlet-name>DeleteGoods</servlet-name>
     <servlet-class>com.product.servlet.DeleteGoods</servlet-class>
   </servlet>
+  
 
 
 
