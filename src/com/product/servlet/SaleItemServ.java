@@ -36,6 +36,7 @@ public class SaleItemServ extends HttpServlet {
 		
 		int saled = good.getSaled()-Integer.parseInt(sale_num);
 		System.out.println(saled);
+		
 		if(good!=null){
 			SaleItemDao dao2=new SaleItemDao();
 			SaleItemVO saleitemvo=new SaleItemVO();
