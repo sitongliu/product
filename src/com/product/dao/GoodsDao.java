@@ -98,6 +98,7 @@ public class GoodsDao {
 	            	vo.setGood_producter(rs.getString("good_producter"));
 	            	vo.setGood_type(rs.getInt("good_type"));
 	            	vo.setDescription(rs.getString("description"));
+	            	vo.setSaled(rs.getInt("saled"));
 	            }
 	        }catch (Exception e) {
 	        	e.printStackTrace();
@@ -170,7 +171,7 @@ public class GoodsDao {
 	            if(saled>0){
 	            sql = "update goods a set a.saled= "+saled+" where good_id="+good_id+"";}
 	            else{
-	            	sql = "delete from goods where good_id="+good_id+" ";
+	            	sql = "update goods a set a.saled= 0 where good_id="+good_id+"";
 	            }
 	            pstm = conn.prepareStatement(sql);
 	            pstm.execute();

@@ -39,6 +39,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<!-- Head Libs -->
 		<script src="assets/plugins/modernizr/js/modernizr.js"></script>	
+		<script>
+		
+		</script>
   </head>
   
   <body>
@@ -56,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					       <div class="profile-info">
 								<span class="name"></span>   
 						   </div>	
-						   <div  class="profile-info"><a href="login.jsp"><i class="fa fa-power-off"></i> 退出</a></div> 
+						   <div  class="profile-info"><a href="login.jsp" target="_parent"><i class="fa fa-power-off"></i> 退出</a></div> 
 					</div>						
 					<!-- End Userbox -->
 				</div>

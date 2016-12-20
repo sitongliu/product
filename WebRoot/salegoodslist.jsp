@@ -58,16 +58,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 							</div>
 						</div>
-					</div>			
-			   <a href="SalePageServ?pageNo=1">首页</a>		   
+					</div>		
+		<div style="width:500px;margin-left:720px;">	
+			   <a href="SalePageServ?pageNo=1">首页 &nbsp; &nbsp;&nbsp;</a>		   
 	           <c:if test="${saleitemvo.pageNo>1}">
-                    <a href="SalePageServ?pageNo=${saleitemvo.pageNo-1}">上一页</a>
+                    <a href="SalePageServ?pageNo=${saleitemvo.pageNo-1}">上一页&nbsp;&nbsp;&nbsp;</a>
                </c:if>
                <c:if test="${saleitemvo.pageNo<saleitemvo.pageCount}">
-                    <a href="SalePageServ?pageNo=${saleitemvo.pageNo+1}">下一页</a>
+                    <a href="SalePageServ?pageNo=${saleitemvo.pageNo+1}">下一页&nbsp;&nbsp;&nbsp;</a>
                </c:if>
-               <a href="SalePageServ?pageNo=${saleitemvo.pageCount}">尾页</a>
-                                                          总页数${saleitemvo.pageCount}   
+               <a href="SalePageServ?pageNo=${saleitemvo.pageCount}">尾页 &nbsp;&nbsp;&nbsp;</a>
+                                                          总页数&nbsp;&nbsp;&nbsp;${saleitemvo.pageCount}   
+             </div>
 							
   </body>
         <script src="assets/vendor/js/jquery.min.js"></script>

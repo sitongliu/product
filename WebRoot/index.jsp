@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <frame src="header.jsp" scrolling="no">
 <frameset cols="240px,*" frameborder="no">
 <frame src="left.jsp" scrolling="no">
-<frame src="buyitem.jsp" scrolling="no" name="container">
+<frame src="welcome.jsp" scrolling="no" name="container">
 </frameset>
 </frameset>
 

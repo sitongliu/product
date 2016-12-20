@@ -32,16 +32,19 @@
 			<div class="panel">
 				<h3 style="margin-left:400px;">现存商品信息表</h3>
 				<form name="searchform" method="post" action="GoodsFindServ">
-
-					<tr bgcolor="lightgrey">
+<div style="width:400px;margin-left:720px">
+<tr bgcolor="lightgrey">
 						<td align="center" colspan="5">
-						输入查找关键字： <select name="subsql">
+						请选择类型： <select name="subsql">
 								<option value="good_name">商品名</option>
 								<option value="good_producter">生产厂商</option>
 						</select> <input type="text" name="subsqlvalue" size="17"> 
 						<input type="submit"  name="searchpart" value="查询" onclick="return check()">
 						</td>
 					</tr>
+
+</div>
+					
 
 				</form>
 				<div class="panel-body">
@@ -80,16 +83,18 @@
 			</div>
 		</div>
 	</div>
-	<a href="GoodsPageServ?pageNo=1">首页</a>
+	
+	<div style="width:500px;margin-left:720px">
+	<a href="GoodsPageServ?pageNo=1">首页      &nbsp; &nbsp;    </a>
 	<c:if test="${goodspage.pageNo>1}">
-		<a href="GoodsPageServ?pageNo=${goodspage.pageNo-1}">上一页</a>
+		<a href="GoodsPageServ?pageNo=${goodspage.pageNo-1}">上一页       &nbsp; &nbsp;   </a>
 	</c:if>
 	<c:if test="${goodspage.pageNo<goodspage.pageCount}">
-		<a href="GoodsPageServ?pageNo=${goodspage.pageNo+1}">下一页</a>
+		<a href="GoodsPageServ?pageNo=${goodspage.pageNo+1}">下一页   &nbsp;  &nbsp;       </a>
 	</c:if>
-	<a href="GoodsPageServ?pageNo=${goodspage.pageCount}">尾页</a>
-	总页数${goodspage.pageCount}
-
+	<a href="GoodsPageServ?pageNo=${goodspage.pageCount}">尾页      &nbsp;    &nbsp;       </a>
+	              &nbsp; &nbsp;  总页数${goodspage.pageCount}
+</div>
 </body>
 <script src="assets/vendor/js/jquery.min.js"></script>
 <script src="assets/vendor/js/jquery-2.1.1.min.js"></script>

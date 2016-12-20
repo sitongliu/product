@@ -3,6 +3,11 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%
+	if (session.getAttribute("flag") == null){
+		out.println("<script type='text/javascript'>alert('请您登陆');window.location='login.jsp'</script>");
+	}
+ %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>

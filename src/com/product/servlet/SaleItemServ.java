@@ -33,7 +33,9 @@ public class SaleItemServ extends HttpServlet {
 		GoodsDao dao1=new GoodsDao();
 		GoodsVO good=dao1.findgoods(good_name,good_producter,Integer.parseInt(good_type));
 		int goodid = good.getGood_id();
+		
 		int saled = good.getSaled()-Integer.parseInt(sale_num);
+		System.out.println(saled);
 		if(good!=null){
 			SaleItemDao dao2=new SaleItemDao();
 			SaleItemVO saleitemvo=new SaleItemVO();

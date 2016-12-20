@@ -266,21 +266,7 @@ color: #d9534f;
 }
 /* Social Bg-Colors
 =================================================================== */
-.facebook-bg {
-color: #fff;
-background: #3b5998;
-background-color : #3b5998;
-}
-.twitter-bg {
-color: #fff;
-background: #00aced;
-background-color : #00aced; 
-}
-.linkedin-bg {
-color: #fff;
-background: #4875b4;
-background-color : #4875b4;  
-}
+
 /* Margin
 =================================================================== */
 .bk-margin-5 {
@@ -665,7 +651,7 @@ border: none;
 border-radius: 0px;
 color: #fff;
 line-height: 62px;
-background: #111 !important;  
+background: #5E87B0 !important;  
 position: fixed;
 width: 100%;
 z-index: 11;
@@ -1072,8 +1058,8 @@ vertical-align: middle;
 /* Sidebar
 =================================================================== */
 .sidebar {
-background: #3c6a92;   
-color: #cccccc;
+background: #F4F4F4;   
+color: #000;
 position: fixed;
 top: 0;
 left: 0; 
@@ -1177,22 +1163,23 @@ box-shadow: 3px 0 0 #435D78 inset;
 color: #abb4be;
 }
 .sidebar ul.nav.nav-sidebar > li.active > i {
-color: #cccccc;
+color: #000;
 }
 .sidebar ul.nav.nav-sidebar > li.nav-expanded > a {
 background: #34495E;
 }
 .sidebar ul.nav.nav-sidebar li a {
-font-size: 13px;
+font-size: 16px;
 font-size: 1.3rem;
 white-space: nowrap;
 text-overflow: ellipsis;
 }
 .sidebar ul.nav.nav-sidebar li span {
 vertical-align: middle;
+color: #000;
 }
 .sidebar ul.nav.nav-sidebar li.text:hover {
-color: #435D78;
+color: #000;
 }
 .sidebar ul.nav.nav-sidebar li i {
 font-size: 18px;
@@ -1225,7 +1212,7 @@ content: '\f106';
 display: block;
 }
 .sidebar ul.nav.nav-sidebar li .nav-children {
-background: #191c21;
+background: #E7E7E7;
 box-shadow: 0px -3px 3px -3px rgba(0, 0, 0, 0.7) inset;
 display: none;
 padding: 10px 0;
@@ -1235,7 +1222,7 @@ padding: 9px 15px 9px 70px;
 }
 .sidebar ul.nav.nav-sidebar li .nav-children li a:hover,
 .sidebar ul.nav.nav-sidebar li .nav-children li a:focus {
-background: #191c21;
+background: #FFFFFF;
 }
 .sidebar ul.nav.nav-sidebar li .nav-children li.active > a {
 color: #435D78;
@@ -1260,7 +1247,7 @@ bottom: 0;
 left: 0;
 width: 240px;
 padding: 10px 20px 10px 20px;
-background: #34495E;
+background: #F4F4F4;
 height: 140px;  
 border-right: 1px solid #eef0f4;
 }
